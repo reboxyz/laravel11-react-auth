@@ -1,0 +1,38 @@
+By default, vite only parse .jsx files and cannot understand .js files.
+To mitigate this limitation, in the vite.config.js file, use the code below to
+tranform .js file to .jsx automatically.
+
+-- START HERE
+
+import { defineConfig, transformWithEsbuild } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [
+    {
+      name: 'treat-js-files-as-jsx',
+      async transform(code, id) {
+        if (!id.match(/src\/.*\.js$/))  return null
+
+        // Use the exposed transform from vite, instead of directly
+        // transforming with esbuild
+        return transformWithEsbuild(code, id, {
+          loader: 'jsx',
+          jsx: 'automatic',
+        })
+      },
+    },
+    react(),
+  ],
+
+  optimizeDeps: {
+    force: true,
+    esbuildOptions: {
+      loader: {
+        '.js': 'jsx',
+      },
+    },
+  },
+})
+
+-- END HERE

@@ -1,0 +1,29 @@
+laravel_react.js_full_stack_crud_and_authentication_project
+Coding with George
+
+16:00, 27, 44, 55, 1:02, 1:10
+
+composer create-project laravel/laravel laravel-react
+php artisan migrate
+php artisan serve
+php artisan make:controller AuthController
+php artisan make:request LoginRequest
+php artisan make:request RegisterRequest
+php artisan install:api
+
+php artisan make:controller UserController --resource --model=User --requests # 
+ php artisan make:resource UserResource
+
+React App with vite
+npm create vite@latest
+cd react-client-app
+npm install
+npm run dev
+
+Links:
+https://laravel.com/docs/11.x/installation
+https://vitejs.dev/guide/
+
+
+
+
